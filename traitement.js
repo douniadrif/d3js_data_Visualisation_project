@@ -13,25 +13,43 @@ let nbreGraph=0
 //fonction chercher(){
 //alert(document.getElementById('prenom'.value))
 //}
+
+// chargement page remplir resultat
 xhr.onload = function() {
 let resultat = xhr.response.features;
+
+//console.log("resultaaaaas" ,resultat  );
 
 for(let i=0 ; i <resultat.length; i++)
 {
   //let tempo = resultat[i].fields
   let resultatProperties = resultat[i].properties;
+
+
+  //console.log("prooooo" ,resultatProperties );
+
+  // coordinates: (2) [30.8166667, 27.9]
   let resultatGeometry = resultat[i].geometry;
+
+  //console.log("geoooooo" ,resultatGeometry);
 
 
   //console.log(`${tempo.annee} : ${tempo.nombre}`);
 
   data.push({"pays" : `${resultatProperties.COUNTRY}`, "latitude" : resultatProperties.LAT, "longitude" : resultatProperties.LON, "type" : resultatProperties.GEN_TYPE})
-  if(lesPays.indexOf(resultatProperties.COUNTRY)==-1)
+  
+  // flag et remplir la liste des payes non double et non vide 
+
+  if(lesPays.indexOf(resultatProperties.COUNTRY) == -1)
   {
     lesPays.push(resultatProperties.COUNTRY)
   }
+//console.log("lesPaysssss" ,lesPays);
+
 }
-document.monFormulaire.myselect.options.length = lesPays.length+1;
+
+//por remplir les valeur des pays automatiquement de select
+document.monFormulaire.myselect.options.length = lesPays.length+1; //nombre de payes ==nombre des valeurs a repmlir
 document.monFormulaire.myselect.options[0].value= "Pays"; 
   document.monFormulaire.myselect.options[0].text= "Pays";
 for (var j = 0; j <lesPays.length; j++) {
@@ -160,6 +178,8 @@ function listLink() {
 if(document.monFormulaire.myselect.value != "Pays"){
   graph(document.monFormulaire.myselect.value);
 }}
+
+
 function refreshPage(){
   window.location.reload();
 }

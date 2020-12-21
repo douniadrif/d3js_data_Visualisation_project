@@ -5,7 +5,7 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_M
  })
 .addTo(map);
 
-var legend = L.control({position: 'bottomright'});
+/*var legend = L.control({position: 'bottomright'});
        legend.onAdd = function (map) {
 
        var div = L.DomUtil.create('div', 'info legend');
@@ -16,6 +16,8 @@ var legend = L.control({position: 'bottomright'});
        return div;
        };
        legend.addTo(map);
+*/
+
 
 function listLink3() {
     console.log(data)
